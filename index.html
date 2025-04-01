@@ -2,18 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <script src="https://kit.fontawesome.com/67cb34d4f6.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://use.typekit.net/tzp3rab.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yatan Website</title>
     <link rel="icon" href="logo.png" type="image/png">
     <style>
-        body {
+        html, body {
             margin: 0;
             font-family: Georgia, serif;
             background-color: #0d3f5f;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+        .laptop-only {
+            visibility: visible;
+            display: block;
+        }
+        /* Hide elements on screens 431px or smaller */
+        @media only screen and (max-width: 431px) {
+            .laptop-only {
+                display: none;
+            }
+        }
+
+        li{
+        list-style: none;
+        }
+
+        .container2{
+        max-width: 1224px;
+        width: 90%;
+        margin: 0 auto;
+        max-height: 0px;
+        }
+
+        a{
+        color: white;
+        text-decoration: none;
+        }
+
+        .nav-menu{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 60px;
+        z-index: 1000;
+        }
+
+        .nav-link{
+        transition: 0.3s ease-out;
+        }
+
+        .nav-link:hover{
+        color: dodgerblue;
+        }
+
+        .hamburger{
+        display: none;
+        cursor: pointer;
+        }
+
+        .bar{
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        background-color: white;
+        position: relative;
+        top: 20px;
+        }
+
+        @media(max-width:1024px){
+        .hamburger{
+            display: block;
+        }
+
+        .hamburger.active .bar:nth-child(2){
+            opacity: 0;
+        }
+        .hamburger.active .bar:nth-child(1){
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active .bar:nth-child(3){
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-menu{
+            position: fixed;
+            left: -100%;
+            top: 70px;
+            gap: 0;
+            flex-direction: column;
+            background-color: #0d3f5f;
+            width: 100%;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .nav-item{
+            margin: 16px 0;
+        }
+
+        .nav-menu.active{
+            left: 0;
+            z-index: 1000;
+        }
+        }
+
+        .phone-only {
+            display: none;
+        }
+        /* Show elements on screens 430px or smaller */
+        @media only screen and (max-width: 430px) {
+            .phone-only {
+                display: block;
+            }
         }
         .header {
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 13px;
+            border-bottom-right-radius: 13px;
             position: fixed;
             top: 0;
             width: 100%;
@@ -26,12 +152,29 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
+
+        .header_phone {
+            border-bottom-left-radius: 13px;
+            border-bottom-right-radius: 13px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #0d3f5f;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 0px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
         .logo img {
-            height: 100px; /* Adjusted height to elongate the logo */
+            height: 6.8rem;
         }
         .nav-buttons {
             display: flex;
-            gap: 10px; /* Adjusted gap to move buttons slightly to the left */
+            gap: 10px;
         }
         .nav-buttons button {
             background-color: #0d3f5f;
@@ -42,9 +185,25 @@
             border-radius: 4px;
             font-size: 18px;
             outline: none;
-            font-family: Georgia, serif; /* Added font-family property */
+            font-family: Georgia, serif;
             position: relative;
             overflow: hidden;
+            transition: color 0.7s ease;
+        }
+        
+        .navbar{
+        min-height: 00px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
+
+
+        .navbar__item {
+            width: 100%;
+        }
+        .nav-buttons button:hover {
+            color: rgb(255, 132, 85);
         }
         .nav-buttons button span {
             position: relative;
@@ -55,7 +214,7 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background-color: white;
+            background-color: rgb(255, 132, 85);
             bottom: 0;
             left: 0;
             transition: width 0.3s ease;
@@ -64,7 +223,7 @@
             width: 100%;
         }
         .content {
-            margin-top: 100px; 
+            margin-top: 100px;
         }
         .section {
             height: 100vh;
@@ -76,8 +235,34 @@
             text-align: center;
             position: relative;
         }
+        icon{
+            font-size: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            }
+        .box{
+            display: flex;
+            padding: 20px;
+            position: relative;
+            flex-direction: column;
+        }
+        text{
+            font-size: 20px;
+            color: white;
+            display: flex;
+            color:#fff;
+            flex-direction: column;
+            font-weight: 300;
+        }
+        .text h3{
+            font-weight: 400;
+            color: rgb(203, 23, 23); 
+            margin: 0;
+        }
         #home {
-            background-image: url('home_bg.png');
+            background-image: url('home_bg.jpeg');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -97,88 +282,491 @@
             z-index: 2;
         }
         #about {
-            background-color: #4682b4;
-        }
-        #services {
-            background-color: #4b0082;
+            background-color: rgb(0, 157, 255);
         }
         #contact {
-            background-color: #5f9ea0;
+            background-color: #ff7f7f;
+            position: relative;
+            min-height: 100vh;
+            padding: 50px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
         #team {
-            background-color: #87cefa;
+            background-image: url('services_workshops.jpg');
+            position: relative;
+            align-items: center;
+            flex: auto;
+            flex-direction: column;
+            height: fit-content;
         }
         .back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #1e90ff;
+            background-color: #0d3f5f;
             color: white;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+            transition: 0.8s;
+            display: none;
         }
         .back-to-top:hover {
-            background-color: #4682b4;
+            background-color: #000000;
+            border-radius: 20px;
         }
         ::-webkit-scrollbar {
             display: none;
         }
+
+        .grid-container {
+        display: grid;
+        grid-template-columns: 50px 1fr 50px;
+        grid-template-rows: auto;
+        display: none;
+        grid-template-areas:
+            "header header header header"
+            "main main . sidebar"
+            "footer footer footer footer";
+        }
+        .content2 {
+            font-size: 44px;
+            font-weight: 500;
+            color: white;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 20px;
+            padding-top: 45px;
+        }
+
+        .ContactInfo {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: auto;
+            background-color: rgba(0, 0, 0, 0.55);
+        }
+
+
+        html {
+        box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+        box-sizing: inherit;
+        }
+
+        .column {
+        float: left;
+        width: 33.3%;
+        margin-bottom: 20px;
+        padding: 0 8px;
+        }
+
+        .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+        border-radius: 10%;
+        background-color: rgb(0, 157, 255);
+        margin: 8px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        }
+
+        .about-section {
+        padding: 50px;
+        text-align: center;
+        background-color: #474e5d;
+        color: white;
+        }
+
+        .container {
+        padding: 0 16px;
+        }
+
+        .container::after, .row::after {
+        content: "";
+        clear: both;
+        display: table;
+        }
+
+        .title {
+        color: rgb(203, 23, 23);
+        }   
+
+        @media screen and (max-width: 650px) {
+        .column {
+            width: 100%;
+            display: block;
+        }
+        }
+
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
+    <div class="laptop-only">
+
+        <div class="header laptop-only">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <div class="nav-buttons">
+                <button onclick="location.href='#home'"><span>Home</span></button>
+                <button onclick="location.href='#about'"><span>About Us</span></button>
+                <button onclick="location.href='#contact'"><span>Contact Us</span></button>
+                <button onclick="location.href='#team'"><span>Our Team</span></button>
+            </div>
         </div>
-        <div class="nav-buttons">
-            <button onclick="location.href='#home'"><span>Home</span></button>
-            <button onclick="location.href='#about'"><span>About Us</span></button>
-            <button onclick="location.href='#services'"><span>Services</span></button>
-            <button onclick="location.href='#team'"><span>Our Team</span></button>
-            <button onclick="location.href='#contact'"><span>Contact Us</span></button>
+        <div class="laptop-only content">
+            <section id="home" class="section">
+                <div style="text-align: right; padding-right: 40px;">
+                    <p style="text-shadow: 6px 6px rgb(97, 8, 8); display: inline-block; vertical-align: middle; margin-left: 600px; font-size: 92px; position: relative; bottom: -180px; right: 0px;">आकाश के तारे</p>
+                    <p style="display: inline-block; vertical-align: middle; margin-left: 10px; font-size: 30px; position: relative; bottom: 380px; right: -500px;">Together, Let's Light Up the Sky</p>
+                    <img src="logo.png" alt="Logo" style="display: inline-block; vertical-align: left; margin-left: 0px; height: 500px; position: relative; top: -120px; left: -700px; bottom: 450px;">
+                </div>
+            </section>
+            <section id="about" class="section">
+                <div style="display: flex; align-items: center; justify-content: space-around; width: 100%;">
+                    <div style="flex: 1; text-align: center;"></div>
+                        <img src="aboutus.png" alt="About Us" style="max-width: 350%; height: 460px; padding-left: 30px; object-fit: cover; padding-right: 200px;">
+                    </div>
+                    <div style="flex: 0.5; text-align: left; padding-right: 55px; object-fit: cover;">
+                        <h1>About Us</h1>
+                        <p style="width: 380px;">We are a passionate group of high school students dedicated to empowering underpriveleged youth through theatre workshops. Our mission is to foster creativity, confidence, and communication skills in students - helping them expres themselves and undercover their hidden potentials. Help us as we make a positive impact in our community, one workshop at a time!</p>
+                    </div>
+                </div>        
+            </section>
+            <section id="statistics" class="section laptop-only" style="height: 33vh;">
+                <div style="display: flex; justify-content: space-around; align-items: center; width: 100%;">
+                    <div style="text-align: center;">
+                        <p style="font-size: 30px; padding-top: 88px; margin-bottom: 11px;">Students Taught</p>
+                        <p style="font-size: 94px; padding-bottom: 20px; margin-top: 0; color: rgb(255, 136, 136);">120+</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 30px; padding-top: 80px; margin-bottom: 11px;">Hours Taught</p>
+                        <p style="font-size: 94px; padding-bottom: 12px; margin-top: 0; color: rgb(255, 136, 136);">35+</p>
+                    </div>
+                </div>
+            </section>
+            <section id="contact" class="section laptop-only" style="background-image: url('services_partnerships.jpg'); background-size: cover; background-position: center; text-align: center;">
+                <div class="ContactInfo">
+                    <h2 class="content2">Contact Us</h2>
+                    <div class="box">
+                            <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                            <div class="text">
+                                <h3>Phone No.</h3>
+                                <p>+91 999 000 9050</p>
+                    </div>
+                    <div></div>
+                    <div class="box">
+                            <div class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+                            <div class="text">
+                                <h3>E-mail</h3>
+                                <p>aakashketaare@gmail.com</p>
+                    </div>
+                    <div></div>
+                    <div class="box">
+                        <div class="icon"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                        <div class="text">
+                            <h3>Instagram</h3>
+                            <p><a href="https://instagram.com/aakash_ke_taare/" target="_blank" style="color: white;">@aakash_ke_taare</a></p>
+                    </div>
+                </div>
+            </section>
+            <section id="team" class="section laptop-only">
+
+                <h2 style="text-align:center">Our Team</h2>
+                <div class="row">
+                <div class="column">
+                    <div class="card">
+                    <div class="container">
+                        <h2>Anshika Bindal</h2>
+                        <p class="title">Founding Director</p>
+                        <p>Anshika is a passionate 10th grader who founded Aakash Ke Taare. She loves storeytelling and performence, both on stage and screen, who seeks to inspire change through this project</p>
+                        <p>aakashketaare@gmail.com</p>
+                        <p>99900 59050</p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="card">
+                    <div class="container">
+                        <h2>Saarang Kabra</h2>
+                        <p class="title">Workshop Director</p>
+                        <p>Saarang is is fun and keeps a happy mood during meetings while coming up with unique activities. His passion for theatre is shown by his contributions to the team.</p>
+                        <p>kabrasaarang@gmail.com</p>
+                        <p>89205 34150</p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="card">
+                    <div class="container">
+                        <h2>Keya A Chaudhuri</h2>
+                        <p class="title">Media Relations Manager</p>
+                        <p>Keya is a 10th grader passionate about connecting with others making a positive impact on her community. Her passion for artistic expressions infuses intself into her work.</p>
+                        <p>keyarorachaudhuri@gmail.com</p>
+                        <p>92052 65954</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="column">
+                    <div class="card">
+                    <div class="container">
+                        <h2>Saessha Passi</h2>
+                        <p class="title">Marketing Head</p>
+                        <p>Saessha is a dedicated drama enthusiast passionat about the performing arts. With talent for teaching, she actively participates in event positively impacting her community.</p>
+                        <p>saessha.passi@gmail.com</p>
+                        <p>98183 44402</p>
+                    </div>
+                    </div>
+                </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="container">
+                                <h2>Abhyudaya Gupta</h2>
+                                <p class="title">Photography Head</p>
+                                <p>Meet Abhyudaya Gupta are Head of Photography and our Website Operator and Designer! Not only is he the mastermind behind the lens but also has a drive for STEM.</p>
+                                <p>abhyudaya.gupta.ag@gmail.com</p>
+                                <p>9958772009</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="container">
+                                <h2>Angad Nagrath</h2>
+                                <p class="title">Photography Deputy</p>
+                                <p>Angad is enthusiastic about life and curious about everything. He aims to understand and frame the world through capturing it in photos be able to tell a story of change.</p>
+                                <p>Angadnagrath@gmail.com</p>
+                                <p>98111 93794</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px; margin: auto; position: relative; left: -220px;">
+                        <button style="background-color: #0d3f5f; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-size: 16px; transition: background-color 0.3s ease;" 
+                                onmouseover="this.style.backgroundColor='#ff8888'" 
+                                onmouseout="this.style.backgroundColor='#0d3f5f'" 
+                                onclick="window.open('https://www.instagram.com/p/DAYvYOgz3NE/?img_index=1', '_blank')">
+                            Wanna know more about our team?
+                        </button>
+                    </div>
+                </div>
+            </section>
         </div>
+        <button class="laptop-only back-to-top" onclick="location.href='#home'" onmouseover="this.style.backgroundColor='#ff8888'" onmouseout="this.style.backgroundColor='#0d3f5f'" style="display: none;">Back to Top</button>
     </div>
-    <div class="content"></div>
+
+    <div class="phone-only container2"> 
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a onclick="location.href='#home'" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a onclick="location.href='#about'" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a onclick="location.href='#contact'" class="nav-link">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a onclick="location.href='#team'" class="nav-link">Our Team</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background-color: pink; z-index: 1000; position: relative; right: -100; top: 25px; z-index: 1001; opacity: 0;"></div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="content phone-only">
         <section id="home" class="section">
-                    <div style="text-align: right; padding-right: 40px;">
-                        <p style="text-shadow: 6px 6px rgb(54, 0, 0); display: inline-block; vertical-align: middle; margin-left: 600px; font-size: 92px; position: relative; bottom: -180px; right: 0px;">आकाश के तारे</p>
-                        <p style="display: inline-block; vertical-align: middle; margin-left: 10px; font-size: 30px; position: relative; bottom: 380px; right: -500px;">Together, Let's Light Up the Sky</p>
-                        <img src="logo.png" alt="Logo" style="display: inline-block; vertical-align: left; margin-left: 0px; height: 500px; position: relative; top: -120px; left: -700px; bottom: 450px;">
+            <img src="logo.png" alt="Logo" style="margin-left: 28.5rem; height: 500px; position: relative; top: -15rem; left: 0px; bottom: 0px;">
+            <p style="text-shadow: 6px 6px rgb(97, 8, 8); font-size: 92px; position: relative; bottom: -30px; right: 23rem;">आकाश के तारे</p>
+            <p style="margin-left: 10px; font-size: 30px; position: relative; bottom: -13.5rem; right: 36rem;">Together, Let's Light Up the Sky</p>
+        </section>
+        <section id="about" class="section" style="height: calc(100vh - 200px);">
+            <div style="display: flex; flex-direction: column; align-items: left; justify-content: center; width: 100%; text-align: left;"></div>
+                <div style="padding: 0 20px;">
+                    <h1 style="position: relative; left: 9rem; top: -8rem; width: 150%;">About Us</h1>
+                    <p style="position: relative; left: 5rem; top: -9rem; width: 230%; text-align: left;">We are a passionate group of high school students dedicated to empowering underprivileged youth through theatre workshops. Our mission is to foster creativity, confidence, and communication skills in students - helping them express themselves and uncover their hidden potentials. Help us as we make a positive impact in our community, one workshop at a time!</p>
+                </div>
+                <img src="aboutus.png" alt="About Us" style="width: 90%; height: 30%; margin-bottom: 20px; object-fit: cover; position: relative; left: -6.5rem; top: 12rem;">
+            </div>
+        </section>
+        <section id="statistics" class="phone-only" style="height: 0vh;">
+            <div style="display: flex; justify-content: space-around; align-items: center; width: 100%;" class="phone-only">
+                <div style="text-align: center;" class="phone-only">
+                    <p style="font-size: 30px; padding-top: 88px; margin-bottom: 11px; color: white; width: 80%; position: relative; top: -6rem;">Students Taught</p>
+                    <p style="font-size: 94px; padding-bottom: 20px; margin-top: 0; color: rgb(255, 136, 136); position: relative; top: -6rem;">120+</p>
+                </div>
+                <div style="text-align: center;" class="phone-only">
+                    <p style="font-size: 30px; padding-top: 80px; margin-bottom: 11px; color: white; width: 80%; position: relative; top: -6rem; right: -1rem;">Hours Taught</p>
+                    <p style="font-size: 94px; padding-bottom: 12px; margin-top: 0; color: rgb(255, 136, 136); position: relative; top: -6rem; right: -1rem;">35+</p>
                 </div>
             </div>
         </section>
-        <section id="about" class="section">
-            <h1>About Us</h1>
-            <p>Information about us.</p>
-        </section>
-        <section id="services" class="section">
-            <h1>Services</h1>
-            <p>Details about our services.</p>
-        </section>
-        <section id="team" class="section">
-            <h1>Our Team</h1>
-            <p>Meet our team.</p>
-        </section>
-        <section id="contact" class="section">
-            <h1>Contact Us</h1>
-            <p>How to contact us.</p>
+        <div class="phone-only">
+            <div id="contact" class="phone-only" style="background-image: url('services_partnerships.jpg'); background-position: center; text-align: center; position: relative; top: 7rem; clip-path: inset(120px 0 0 0);">
+                <h1 style="color: white; position: relative; z-index: 2; font-size: 2.2rem; top: -4.2rem">Contact Us</h1>
+                <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 16px; display: inline-block; position: relative; z-index: 1; transform: scale(1.4);">
+                    <div>
+                        <div class="icon" style="color: white; font-size: 1.5em;"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                        <div class="text">
+                            <h3 style="color: #CB1717; font-size: 1.5em;">Phone No.</h3>
+                            <p style="color: white; font-size: 1.2em;">+91 999 000 9050</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <div class="icon" style="color: white; font-size: 1.5em;"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+                        <div class="text">
+                            <h3 style="color: #CB1717; font-size: 1.5em;">E-mail</h3>
+                            <p style="color: white; font-size: 1.2em;">aakashketaare@gmail.com</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <div class="icon" style="color: white; font-size: 1.5em;"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                        <div class="text">
+                            <h3 style="color: #CB1717; font-size: 1.5em;">Instagram</h3>
+                            <p><a href="https://instagram.com/aakash_ke_taare/" target="_blank" style="color: white; font-size: 1.2em;">@aakash_ke_taare</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="team" class="section phone-only">
+            <h2 style="text-align:center">Our Team</h2>
+            <div class="row">
+              <div class="column">
+                <div class="card">
+                  <div class="container">
+                    <h2>Anshika Bindal</h2>
+                    <p class="title">Founding Director</p>
+                    <p>Anshika is a passionate 10th grader who founded Aakash Ke Taare. She loves storeytelling and performence, both on stage and screen, who seeks to inspire change through this project</p>
+                    <p>aakashketaare@gmail.com</p>
+                    <p>99900 59050</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="column">
+                <div class="card">
+                  <div class="container">
+                    <h2>Saarang Kabra</h2>
+                    <p class="title">Workshop Director</p>
+                    <p>Saarang is is fun and keeps a happy mood during meetings while coming up with unique activities. His passion for theatre is shown by his contributions to the team.</p>
+                    <p>kabrasaarang@gmail.com</p>
+                    <p>89205 34150</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="column">
+                <div class="card">
+                  <div class="container">
+                    <h2>Keya A Chaudhuri</h2>
+                    <p class="title">Media Relations Manager</p>
+                    <p>Keya is a 10th grader passionate about connecting with others making a positive impact on her community. Her passion for artistic expressions infuses intself into her work.</p>
+                    <p>keyarorachaudhuri@gmail.com</p>
+                    <p>92052 65954</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="column">
+                <div class="card">
+                  <div class="container">
+                    <h2>Saessha Passi</h2>
+                    <p class="title">Marketing Head</p>
+                    <p>Saessha is a dedicated drama enthusiast passionat about the performing arts. With talent for teaching, she actively participates in event positively impacting her community.</p>
+                    <p>saessha.passi@gmail.com</p>
+                    <p>98183 44402</p>
+                  </div>
+                </div>
+              </div>
+
+                <div class="column">
+                    <div class="card">
+                        <div class="container">
+                            <h2>Abhyudaya Gupta</h2>
+                            <p class="title">Photography Head</p>
+                            <p>Meet Abhyudaya Gupta are Head of Photography and our Website Operator and Designer! Not only is he the mastermind behind the lens but also has a drive for STEM.</p>
+                            <p>abhyudaya.gupta.ag@gmail.com</p>
+                            <p>9958772009</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                    <div class="container">
+                        <h2>Angad Nagrath</h2>
+                        <p class="title">Photography Deputy</p>
+                        <p>Angad is enthusiastic about life and curious about everything. He aims to understand and frame the world through capturing it in photos be able to tell a story of change.</p>
+                        <p>Angadnagrath@gmail.com</p>
+                        <p>98111 93794</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button style="background-color: #0d3f5f; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-size: 16px; transition: background-color 0.3s ease;" 
+                            onmouseover="this.style.backgroundColor='#ff8888'" 
+                            onmouseout="this.style.backgroundColor='#0d3f5f'" 
+                            onclick="window.open('https://www.instagram.com/p/DAYvYOgz3NE/?img_index=1', '_blank')">
+                        Wanna know more about our team?
+                    </button>
+                </div></div>
+            </div>
         </section>
     </div>
-    <button class="back-to-top" onclick="location.href='#home'">Back to Top</button>
-
+    
     <script>
         window.onscroll = function() {scrollFunction()};
-
         function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.querySelector(".back-to-top").style.display = "block";
+            if (document.body.scrollTop > 130 || document.documentElement.scrollTop > 130) {
+                document.querySelectorAll(".back-to-top").forEach(button => {
+                    button.style.display = "block";
+                });
             } else {
-                document.querySelector(".back-to-top").style.display = "none";
+                document.querySelectorAll(".back-to-top").forEach(button => {
+                    button.style.display = "none";
+                });
             }
         }
+
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+        })
+
+        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+        }))
     </script>
 </body>
 </html>
